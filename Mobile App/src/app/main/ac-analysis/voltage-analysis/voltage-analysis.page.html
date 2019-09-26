@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Voltage</ion-title>
+  </ion-toolbar>
+  <ion-segment (ionChange)="segmentChanged($event)" value="mV">
+    <ion-segment-button value="mV">
+      <ion-label>Millivolts</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="V">
+      <ion-label>Volts</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>
+  <!-- fab placed to the bottom end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="arrow-dropleft"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button><ion-button color="primary" (click)="goToVoltageAnalysis()"><b>V</b></ion-button></ion-fab-button>
+      <ion-fab-button><ion-button color="tertiary" (click)="goToCurrentAnalysis()"><b>C</b></ion-button></ion-fab-button>
+      <ion-fab-button><ion-button color="tertiary" (click)="goToPowerConAnalysis()"><b>P</b></ion-button></ion-fab-button>
+      <ion-fab-button><ion-button color="tertiary" (click)="goToVibrationAnalysis()"><b>Vi</b></ion-button></ion-fab-button>
+      <ion-fab-button><ion-button color="tertiary" (click)="goToHumidityAnalysis()"><b>H</b></ion-button></ion-fab-button>
+      <ion-fab-button><ion-button color="tertiary" (click)="goToTemperatureAnalysis()"><b>T</b></ion-button></ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <ion-grid>
+    <ion-row center>
+      <ion-col text-center>
+        <br><br><br><br>
+        <div class="sensorsDisplay"><p>{{ getVolRecentStatus() }}</div>
+        <p class="reader" ><b>Recent</b></p>
+        <br><br>
+        <div class="sensorsDisplay"><p>{{ getVolDailyStatus() }}</div>
+        <p class="reader" ><b>Daily Average</b></p>
+        <br><br>
+        <div class="sensorsDisplay"><p>{{ getVolWeeklyStatus() }}</div>
+        <p class="reader" ><b>Weekly Average</b></p>
+        <br><br><br><br>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row center>
+      <ion-col text-center>
+          <ion-button shape="round" size="default" expland="block">
+            <ion-back-button color="tertiary" defaultHref="/main"></ion-back-button>
+          </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

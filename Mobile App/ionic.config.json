@@ -1,0 +1,7 @@
+{
+  "name": "SmartHVAC",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

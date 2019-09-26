@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="tertiary"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-row center>
+      <ion-col text-center>
+        <br><br><br><br><br><br><br>
+        <img style="border:3px solid midnightblue ;" src="../assets/rv1.png" align="center" width="250" height="100"/>
+      </ion-col>
+    </ion-row>
+    <br><br>
+    <ion-grid>
+      <ion-row center>
+        <ion-col text-center>
+          <ion-button shape="round" size="large" expland="block" (click)="goToAcAnalysis()">AC Analysis</ion-button><br><br>
+          <ion-button color="tertiary" shape="round" size="large" expland="block" (click)="goToThermoAnalysis()">Thermostat<br>Analysis</ion-button><br><br>
+          <ion-button shape="round" size="large" expland="block" (click)="goToAnalysisHistory()">Analysis <br> History</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>

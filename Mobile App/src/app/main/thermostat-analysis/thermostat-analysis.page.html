@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Thermostat Analysis</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-grid>
+    <ion-row center>
+      <ion-col text-center>
+          <ion-segment (ionChange)="segmentChanged($event)" value="fahrenheit">
+            <ion-segment-button value="fahrenheit">
+              <ion-label>Fahrenheit</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="celcius">
+              <ion-label>Celcius</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+        <h4>Temperature</h4>
+        <div class="sensorsDisplay"><p>{{ getTempRecentStatus() }}</div><br>
+        <h4>Temperature</h4>
+        <div class="sensorsDisplay"><p>{{ getTempRecentStatus() }}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+  <ion-grid>
+    <ion-row center>
+      <ion-col text-center>
+        <ion-button shape="round" size="large" expland="block" (click)="goToCompressorControl()">Compressor <br> Control</ion-button><br><br>
+        <ion-button shape="round" size="large" expland="block" (click)="goToFanControl()">Fan  <br>Control</ion-button><br><br>
+        <ion-button color="tertiary" shape="roud" size="large" expland="block" (click)="powerOff()">
+            <ion-icon name="power"></ion-icon>
+        </ion-button><br><br>
+        <br><br><br><br><br><br><br><br>
+        <ion-button shape="round" size="default" expland="block">
+          <ion-back-button color="tertiary" defaultHref="/main"></ion-back-button>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

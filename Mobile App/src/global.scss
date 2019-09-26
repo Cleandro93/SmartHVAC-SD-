@@ -1,0 +1,112 @@
+// http://ionicframework.com/docs/theming/
+@import '~@ionic/angular/css/core.css';
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+@import '~@ionic/angular/css/display.css';
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+ion-toolbar {
+    --background: #083c8b;
+}
+
+ion-button {
+    --background: #083c8b;
+}
+
+ion-img {
+    --background: #083c8b;
+}
+
+ion-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 90px 2px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #ffffff;
+}
+
+/*
+ion-segment {
+    color: #ffffff;
+}
+*/
+
+ion-content {
+    //--background: #eef0f1;
+    --background:#808080;
+}
+
+:root {
+    --ion-color-primary: #06367e;
+    --ion-color-secondary: #f2f7f2;
+    --ion-color-secondary-contrast: #ffffff;
+    --ion-color-secondary-contrast-rgb: 255,255,255;
+    --ion-color-tertiary: #c20a0a;
+    --ion-color-primary-tint: #092652;
+}
+
+.my-custom-menu {
+    --width: 500px;
+}
+
+h4 {
+    color: #eef0f1;
+    background-color: #8b2626;
+    text-align: center;
+}
+
+div.compressorStatus {
+    position: relative;
+    width: 150px;
+    height: 100px;
+    border: 5px solid #06367e;
+    font-size: 80px;
+    text-align:center;
+    display: inline-block;
+    background-color: #c0e3f7;
+}
+
+div.compressorStatus p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    color: #06367e;
+}
+
+div.sensorsDisplay {
+    position: relative;
+    width: 118px;
+    height: 70px;
+    border: 5px solid #06367e;
+    font-size: 38px;
+    text-align:center;
+    display: inline-block;
+    background-color: #c0e3f7;
+}
+
+
+div.sensorsDisplay p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    color: #06367e;
+}
+
+.reader{
+    font-size: 13px;
+    color: #06367e;
+}
