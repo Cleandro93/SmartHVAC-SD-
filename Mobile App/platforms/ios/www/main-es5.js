@@ -40,6 +40,14 @@ var map = {
 		"./src/app/main/analysis-history/analysis-history.module.ts",
 		"main-analysis-history-analysis-history-module"
 	],
+	"./main/bluetooth/bluetooth.module": [
+		"./src/app/main/bluetooth/bluetooth.module.ts",
+		"main-bluetooth-bluetooth-module"
+	],
+	"./main/device-details/device-details.module": [
+		"./src/app/main/device-details/device-details.module.ts",
+		"main-device-details-device-details-module"
+	],
 	"./main/device-information/device-information.module": [
 		"./src/app/main/device-information/device-information.module.ts",
 		"main-device-information-device-information-module"
@@ -528,6 +536,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _main_resolver_ble_resolver_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./main/resolver/ble-resolver.service */ "./src/app/main/resolver/ble-resolver.service.ts");
+
 
 
 
@@ -541,11 +551,23 @@ var routes = [
     { path: 'help', loadChildren: './main/help/help.module#HelpPageModule' },
     { path: 'analysis-history', loadChildren: './main/analysis-history/analysis-history.module#AnalysisHistoryPageModule' },
     { path: 'voltage-analysis', loadChildren: './main/ac-analysis/voltage-analysis/voltage-analysis.module#VoltageAnalysisPageModule' },
+    // tslint:disable-next-line: max-line-length
     { path: 'temperature-analysis', loadChildren: './main/ac-analysis/temperature-analysis/temperature-analysis.module#TemperatureAnalysisPageModule' },
     { path: 'humidity-analysis', loadChildren: './main/ac-analysis/humidity-analysis/humidity-analysis.module#HumidityAnalysisPageModule' },
+    // tslint:disable-next-line: max-line-length
     { path: 'power-consumption-analysis', loadChildren: './main/ac-analysis/power-consumption-analysis/power-consumption-analysis.module#PowerConsumptionAnalysisPageModule' },
     { path: 'current-analysis', loadChildren: './main/ac-analysis/current-analysis/current-analysis.module#CurrentAnalysisPageModule' },
+    // tslint:disable-next-line: max-line-length
     { path: 'vibration-analysis', loadChildren: './main/ac-analysis/vibration-analysis/vibration-analysis.module#VibrationAnalysisPageModule' },
+    { path: 'bluetooth', loadChildren: './main/bluetooth/bluetooth.module#BluetoothPageModule' },
+    { path: 'device-details', loadChildren: './main/device-details/device-details.module#DeviceDetailsPageModule' },
+    {
+        path: 'device-details/:id',
+        resolve: {
+            special: _main_resolver_ble_resolver_service__WEBPACK_IMPORTED_MODULE_3__["BleResolverService"]
+        },
+        loadChildren: './main/device-details/device-details.module#DeviceDetailsPageModule'
+    }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -604,7 +626,7 @@ var AppComponent = /** @class */ (function () {
         this.appPages = [
             {
                 title: 'Pair SmartHVAC',
-                url: '/pair',
+                url: '/bluetooth',
                 icon: 'bluetooth'
             },
             {
@@ -703,6 +725,82 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/main/resolver/ble-resolver.service.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/main/resolver/ble-resolver.service.ts ***!
+  \*******************************************************/
+/*! exports provided: BleResolverService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BleResolverService", function() { return BleResolverService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_ble_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../services/ble.service */ "./src/app/main/services/ble.service.ts");
+
+
+
+var BleResolverService = /** @class */ (function () {
+    function BleResolverService(bleService) {
+        this.bleService = bleService;
+    }
+    BleResolverService.prototype.resolve = function () {
+        // let id = route.paramMap.get('id');
+        return this.bleService.getDevice();
+    };
+    BleResolverService.ctorParameters = function () { return [
+        { type: _services_ble_service__WEBPACK_IMPORTED_MODULE_2__["BleService"] }
+    ]; };
+    BleResolverService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_ble_service__WEBPACK_IMPORTED_MODULE_2__["BleService"]])
+    ], BleResolverService);
+    return BleResolverService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/main/services/ble.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/main/services/ble.service.ts ***!
+  \**********************************************/
+/*! exports provided: BleService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BleService", function() { return BleService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var BleService = /** @class */ (function () {
+    function BleService() {
+    }
+    BleService.prototype.setDevice = function (device) {
+        this.device = device;
+    };
+    BleService.prototype.getDevice = function () {
+        return this.device;
+    };
+    BleService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], BleService);
+    return BleService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/environments/environment.ts":
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
@@ -764,7 +862,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/Cleandro/Documents/Senior Design /SmartHVAC(working)/Mobile App/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/Cleandro/Documents/Senior Design/SmartHVAC/Mobile App/src/main.ts */"./src/main.ts");
 
 
 /***/ })

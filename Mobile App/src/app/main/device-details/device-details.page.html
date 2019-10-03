@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button slot="start" defaultHref="bluetooth"></ion-back-button>
+    </ion-buttons>
+    <ion-title>deviceDetails</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class=padding>
+  <ion-card>
+    <ion-card-header>
+      {{ device.name || "Unnamed"}}
+    </ion-card-header>
+    <ion-card-content>
+      ID: {{ device.id }}
+    </ion-card-content>
+  </ion-card>
+
+  <!--<ion-card>
+    <ion-card-header>
+      Services
+    </ion-card-header>
+    <ion-list>
+      <ion-item *ngFor="let service of device.services">
+        <p>{{service}}</p>
+        </ion-item>
+    </ion-list>
+  </ion-card>-->
+
+  <ion-card>
+    <ion-card-header>
+      Notification data
+    </ion-card-header>
+    <ion-list>
+      <ion-item *ngFor="let data of sensorData">
+        <p>{{data}}</p>
+        </ion-item>
+    </ion-list>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <p>{{ statusMessage }}</p>
+  </ion-toolbar>
+</ion-footer>

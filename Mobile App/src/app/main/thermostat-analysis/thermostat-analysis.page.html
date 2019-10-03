@@ -17,23 +17,45 @@
               <ion-label>Celcius</ion-label>
             </ion-segment-button>
         </ion-segment>
-        <h4>Temperature</h4>
-        <div class="sensorsDisplay"><p>{{ getTempRecentStatus() }}</div><br>
-        <h4>Temperature</h4>
-        <div class="sensorsDisplay"><p>{{ getTempRecentStatus() }}</div>
+        <h4>Ambient Temperature</h4>
+        <div class="sensorsDisplay"><p>{{ getAmbTempStatus() }}</div><br>
+        <h4>Set Temperature To</h4>
+        <div class="sensorsDisplay"><p>{{ getSetTemp() }}</div>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <br><br>
   <ion-grid>
     <ion-row center>
       <ion-col text-center>
-        <ion-button shape="round" size="large" expland="block" (click)="goToCompressorControl()">Compressor <br> Control</ion-button><br><br>
-        <ion-button shape="round" size="large" expland="block" (click)="goToFanControl()">Fan  <br>Control</ion-button><br><br>
-        <ion-button color="tertiary" shape="roud" size="large" expland="block" (click)="powerOff()">
-            <ion-icon name="power"></ion-icon>
-        </ion-button><br><br>
-        <br><br><br><br><br><br><br><br>
+        <div class="signalStatus">
+              <div class="signalDisplay"><p>R</div><br><br><br>
+              <div class="signalDisplay"><p>Y</div><br><br><br>
+              <div class="signalDisplay"><p>GH</div><br><br><br>
+              <div class="signalDisplay"><p>GL</div><br><br><br>
+              <div class="signalDisplay"><p>W</div><br><br><br>
+              <div class="signalDisplay"><p>B</div>
+        </div>
+        <div class="thermostatButtons">
+            <br><br><br><br><br>
+            <ion-button shape="round" size="large" expland="block" class="shadow-red" (click)="setTempUp()">
+              <ion-icon name="arrow-dropup"></ion-icon>
+            </ion-button>
+            <ion-button shape="round" size="large" expland="block" (click)="setTempDown()">
+              <ion-icon name="arrow-dropdown"></ion-icon>
+            </ion-button><br><br>
+            <ion-button color="tertiary" shape="round" size="large" expland="block" (click)="powerOff()">
+              <ion-icon name="power"></ion-icon>
+            </ion-button>
+        </div>
+        <div class="signalControl">
+          <ion-toggle class="signalsToggles" color="primary"></ion-toggle><br><br><br>
+          <ion-toggle class="signalsToggles" color="primary"></ion-toggle><br><br><br>
+          <ion-toggle class="signalsToggles" color="primary"></ion-toggle><br><br><br>
+          <ion-toggle class="signalsToggles" color="primary"></ion-toggle><br><br><br>
+          <ion-toggle class="signalsToggles" color="primary"></ion-toggle><br><br><br>
+          <ion-toggle class="signalsToggles" color="primary"></ion-toggle><br><br><br>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <ion-button shape="round" size="default" expland="block">
           <ion-back-button color="tertiary" defaultHref="/main"></ion-back-button>
         </ion-button>

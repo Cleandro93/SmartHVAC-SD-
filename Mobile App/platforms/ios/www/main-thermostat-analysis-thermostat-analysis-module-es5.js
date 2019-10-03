@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Thermostat Analysis</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <br>\n  <ion-grid>\n    <ion-row center>\n      <ion-col text-center>\n          <ion-segment (ionChange)=\"segmentChanged($event)\" value=\"fahrenheit\">\n            <ion-segment-button value=\"fahrenheit\">\n              <ion-label>Fahrenheit</ion-label>\n            </ion-segment-button>\n            <ion-segment-button value=\"celcius\">\n              <ion-label>Celcius</ion-label>\n            </ion-segment-button>\n        </ion-segment>\n        <h4>Temperature</h4>\n        <div class=\"sensorsDisplay\"><p>{{ getTempRecentStatus() }}</div><br>\n        <h4>Temperature</h4>\n        <div class=\"sensorsDisplay\"><p>{{ getTempRecentStatus() }}</div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <br><br>\n  <ion-grid>\n    <ion-row center>\n      <ion-col text-center>\n        <ion-button shape=\"round\" size=\"large\" expland=\"block\" (click)=\"goToCompressorControl()\">Compressor <br> Control</ion-button><br><br>\n        <ion-button shape=\"round\" size=\"large\" expland=\"block\" (click)=\"goToFanControl()\">Fan  <br>Control</ion-button><br><br>\n        <ion-button color=\"tertiary\" shape=\"roud\" size=\"large\" expland=\"block\" (click)=\"powerOff()\">\n            <ion-icon name=\"power\"></ion-icon>\n        </ion-button><br><br>\n        <br><br><br><br><br><br><br><br>\n        <ion-button shape=\"round\" size=\"default\" expland=\"block\">\n          <ion-back-button color=\"tertiary\" defaultHref=\"/main\"></ion-back-button>\n        </ion-button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Thermostat Analysis</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <br>\n  <ion-grid>\n    <ion-row center>\n      <ion-col text-center>\n          <ion-segment (ionChange)=\"segmentChanged($event)\" value=\"fahrenheit\">\n            <ion-segment-button value=\"fahrenheit\">\n              <ion-label>Fahrenheit</ion-label>\n            </ion-segment-button>\n            <ion-segment-button value=\"celcius\">\n              <ion-label>Celcius</ion-label>\n            </ion-segment-button>\n        </ion-segment>\n        <h4>Ambient Temperature</h4>\n        <div class=\"sensorsDisplay\"><p>{{ getAmbTempStatus() }}</div><br>\n        <h4>Set Temperature To</h4>\n        <div class=\"sensorsDisplay\"><p>{{ getSetTemp() }}</div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-grid>\n    <ion-row center>\n      <ion-col text-center>\n        <div class=\"signalStatus\">\n              <div class=\"signalDisplay\"><p>R</div><br><br><br>\n              <div class=\"signalDisplay\"><p>Y</div><br><br><br>\n              <div class=\"signalDisplay\"><p>GH</div><br><br><br>\n              <div class=\"signalDisplay\"><p>GL</div><br><br><br>\n              <div class=\"signalDisplay\"><p>W</div><br><br><br>\n              <div class=\"signalDisplay\"><p>B</div>\n        </div>\n        <div class=\"thermostatButtons\">\n            <br><br><br><br><br>\n            <ion-button shape=\"round\" size=\"large\" expland=\"block\" class=\"shadow-red\" (click)=\"setTempUp()\">\n              <ion-icon name=\"arrow-dropup\"></ion-icon>\n            </ion-button>\n            <ion-button shape=\"round\" size=\"large\" expland=\"block\" (click)=\"setTempDown()\">\n              <ion-icon name=\"arrow-dropdown\"></ion-icon>\n            </ion-button><br><br>\n            <ion-button color=\"tertiary\" shape=\"round\" size=\"large\" expland=\"block\" (click)=\"powerOff()\">\n              <ion-icon name=\"power\"></ion-icon>\n            </ion-button>\n        </div>\n        <div class=\"signalControl\">\n          <ion-toggle class=\"signalsToggles\" color=\"primary\"></ion-toggle><br><br><br>\n          <ion-toggle class=\"signalsToggles\" color=\"primary\"></ion-toggle><br><br><br>\n          <ion-toggle class=\"signalsToggles\" color=\"primary\"></ion-toggle><br><br><br>\n          <ion-toggle class=\"signalsToggles\" color=\"primary\"></ion-toggle><br><br><br>\n          <ion-toggle class=\"signalsToggles\" color=\"primary\"></ion-toggle><br><br><br>\n          <ion-toggle class=\"signalsToggles\" color=\"primary\"></ion-toggle><br><br><br>\n        </div>\n        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>\n        <ion-button shape=\"round\" size=\"default\" expland=\"block\">\n          <ion-back-button color=\"tertiary\" defaultHref=\"/main\"></ion-back-button>\n        </ion-button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n"
 
 /***/ }),
 
@@ -95,6 +95,7 @@ var ThermostatAnalysisPage = /** @class */ (function () {
     function ThermostatAnalysisPage(navCtrl, ble) {
         this.navCtrl = navCtrl;
         this.ble = ble;
+        this.setToTemp = 72;
     }
     ThermostatAnalysisPage.prototype.ngOnInit = function () {
     };
@@ -102,20 +103,30 @@ var ThermostatAnalysisPage = /** @class */ (function () {
         this.category = ev.detail.value;
         //console.log(ev);
     };
-    ThermostatAnalysisPage.prototype.getTempRecentStatus = function () {
-        this.recentTemp = 32;
+    ThermostatAnalysisPage.prototype.getAmbTempStatus = function () {
+        this.ambTemp = 72;
         if (this.category === 'celcius') {
-            return this.recentTemp;
+            return (this.ambTemp - 32) * (5 / 9);
         }
         else {
-            return (this.recentTemp * 1.8) + 32;
+            return this.ambTemp;
         }
     };
-    ThermostatAnalysisPage.prototype.goToCompressorControl = function () {
-        this.navCtrl.navigateRoot('/welcome/main/diagnosis-options/compressor');
+    ThermostatAnalysisPage.prototype.getSetTemp = function () {
+        if (this.category === 'celcius') {
+            return (this.setToTemp - 32) * (5 / 9);
+        }
+        else {
+            return this.setToTemp;
+        }
     };
-    ThermostatAnalysisPage.prototype.goToFanControl = function () {
-        this.navCtrl.navigateRoot('/welcome/main/diagnosis-options/fan-control');
+    ThermostatAnalysisPage.prototype.setTempUp = function () {
+        // console.log("Tried to Increase Temp");
+        this.setToTemp += 1;
+    };
+    ThermostatAnalysisPage.prototype.setTempDown = function () {
+        // console.log("Tried to Increase Temp");
+        this.setToTemp -= 1;
     };
     ThermostatAnalysisPage.prototype.powerOff = function () {
     };
