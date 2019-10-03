@@ -9,8 +9,8 @@ import { BLE } from '@ionic-native/ble/ngx';
 })
 export class ThermostatAnalysisPage implements OnInit {
   category: string;
-    ambTemp: number;
-    setToTemp = 72;
+    recentTemp: number;
+    dailyTemp: number;
     weeklyTemp: number;
     tempUnit: string;
     devices: any[];
@@ -26,32 +26,22 @@ export class ThermostatAnalysisPage implements OnInit {
       //console.log(ev);
     }
 
-    getAmbTempStatus() {
-      this.ambTemp = 72;
+    getTempRecentStatus() {
+      this.recentTemp = 32;
 
       if (this.category === 'celcius') {
-        return (this.ambTemp - 32) * (5 / 9);
+        return this.recentTemp;
       } else {
-        return this.ambTemp;
+        return (this.recentTemp * 1.8) + 32;
       }
     }
 
-    getSetTemp() {
-      if (this.category === 'celcius') {
-        return (this.setToTemp - 32) * (5 / 9);
-      } else {
-        return this.setToTemp;
-      }
+    goToCompressorControl() {
+      this.navCtrl.navigateRoot('/welcome/main/diagnosis-options/compressor');
     }
 
-    setTempUp() {
-      // console.log("Tried to Increase Temp");
-      this.setToTemp += 1;
-    }
-
-    setTempDown() {
-      // console.log("Tried to Increase Temp");
-      this.setToTemp -= 1;
+    goToFanControl() {
+      this.navCtrl.navigateRoot('/welcome/main/diagnosis-options/fan-control');
     }
 
     powerOff() {

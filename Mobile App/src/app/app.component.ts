@@ -13,7 +13,7 @@ export class AppComponent {
   public appPages = [
     {
       title: 'Pair SmartHVAC',
-      url: '/bluetooth',
+      url: '/pair',
       icon: 'bluetooth'
     },
     {
