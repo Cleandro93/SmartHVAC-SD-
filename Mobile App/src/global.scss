@@ -41,7 +41,7 @@ ion-segment {
 
 ion-content {
     //--background: #eef0f1;
-    --background:#808080;
+    //--background:#808080;
 }
 
 :root {
@@ -63,18 +63,25 @@ h4 {
     text-align: center;
 }
 
-div.compressorStatus {
+div.signalStatus {
     position: relative;
-    width: 150px;
-    height: 100px;
+    display: inline-block;
+    float: left;
+    padding-right: 0.5cm;
+}
+
+div.signalDisplay {
+    position: relative;
+    width: 38px;
+    height: 33px;
     border: 5px solid #06367e;
-    font-size: 80px;
+    font-size: 20px;
     text-align:center;
     display: inline-block;
     background-color: #c0e3f7;
 }
 
-div.compressorStatus p {
+div.signalDisplay p {
     margin: 0;
     position: absolute;
     top: 50%;
@@ -82,6 +89,22 @@ div.compressorStatus p {
     margin-right: -50%;
     transform: translate(-50%, -50%);
     color: #06367e;
+}
+
+div.thermostatButtons {
+    //width: 100px;
+    //height: 100px;
+    display: inline-block;
+    float: left;
+    padding-left: 1.0cm;
+    padding-right: 1.0cm;
+}
+
+div.signalControl {
+    position: relative;
+    display: inline-block;
+    float: right;
+    padding-left: 0cm;
 }
 
 div.sensorsDisplay {
@@ -94,7 +117,6 @@ div.sensorsDisplay {
     display: inline-block;
     background-color: #c0e3f7;
 }
-
 
 div.sensorsDisplay p {
     margin: 0;
