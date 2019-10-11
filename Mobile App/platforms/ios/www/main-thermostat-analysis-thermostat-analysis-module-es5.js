@@ -87,14 +87,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _ionic_native_ble_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/ble/ngx */ "./node_modules/@ionic-native/ble/ngx/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 
+
+
+
+//
 
 
 
 var ThermostatAnalysisPage = /** @class */ (function () {
-    function ThermostatAnalysisPage(navCtrl, ble) {
+    //
+    //device: any = {};
+    //sensorData:Uint8Array;
+    //statusMessage: string;
+    function ThermostatAnalysisPage(navCtrl, route, router, ngZone, toastCtrl, ble, alertController) {
         this.navCtrl = navCtrl;
+        this.route = route;
+        this.router = router;
+        this.ngZone = ngZone;
+        this.toastCtrl = toastCtrl;
         this.ble = ble;
+        this.alertController = alertController;
         this.setToTemp = 72;
     }
     ThermostatAnalysisPage.prototype.ngOnInit = function () {
@@ -104,6 +118,7 @@ var ThermostatAnalysisPage = /** @class */ (function () {
         //console.log(ev);
     };
     ThermostatAnalysisPage.prototype.getAmbTempStatus = function () {
+        //this.ambTemp = this.sensorData[0];
         this.ambTemp = 72;
         if (this.category === 'celcius') {
             return (this.ambTemp - 32) * (5 / 9);
@@ -132,7 +147,12 @@ var ThermostatAnalysisPage = /** @class */ (function () {
     };
     ThermostatAnalysisPage.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"] },
-        { type: _ionic_native_ble_ngx__WEBPACK_IMPORTED_MODULE_3__["BLE"] }
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] },
+        { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] },
+        { type: _ionic_native_ble_ngx__WEBPACK_IMPORTED_MODULE_3__["BLE"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] }
     ]; };
     ThermostatAnalysisPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -140,7 +160,13 @@ var ThermostatAnalysisPage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./thermostat-analysis.page.html */ "./node_modules/raw-loader/index.js!./src/app/main/thermostat-analysis/thermostat-analysis.page.html"),
             styles: [__webpack_require__(/*! ./thermostat-analysis.page.scss */ "./src/app/main/thermostat-analysis/thermostat-analysis.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"], _ionic_native_ble_ngx__WEBPACK_IMPORTED_MODULE_3__["BLE"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"],
+            _ionic_native_ble_ngx__WEBPACK_IMPORTED_MODULE_3__["BLE"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]])
     ], ThermostatAnalysisPage);
     return ThermostatAnalysisPage;
 }());

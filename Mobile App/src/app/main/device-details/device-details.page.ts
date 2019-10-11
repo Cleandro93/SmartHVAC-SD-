@@ -15,22 +15,18 @@ export class DeviceDetailsPage implements OnInit {
   statusMessage: string;
 
   constructor(private route: ActivatedRoute,
-    private router: Router,
-    private ngZone: NgZone,
-    private toastCtrl: ToastController,
-    private ble: BLE,
-  public alertController: AlertController) {
-
-
-
-
-     }
+              private router: Router,
+              private ngZone: NgZone,
+              private toastCtrl: ToastController,
+              private ble: BLE,
+              public alertController: AlertController
+  ) { }
 
   ngOnInit() {
     //if (this.route.snapshot.data['special']){
       let passDevice = this.route.snapshot.data['special'];
 
-      this.setStatus('Connecting to '+ passDevice.name || passDevice.id);
+      this.setStatus('Connecting to ' + passDevice.name || passDevice.id);
 
       this.ble.connect(passDevice.id).subscribe(
         device => this.onConnected(passDevice),
@@ -43,13 +39,12 @@ export class DeviceDetailsPage implements OnInit {
   onConnected(device){
     //this.ngZone.run(() => {
     this.device = device;
-      this.setStatus('Connected to '+(device.name || device.id));
+    this.setStatus('Connected to ' + (device.name || device.id));
 
-      this.ble.startNotification(this.device.id, "D0AF", "6B7B").subscribe(
-        data=>this.onSensorsData(data),
-        error=> this.presentAlert('Unexpected Error', error)
-
-      )
+    this.ble.startNotification(this.device.id, "D0AF", "6B7B").subscribe(
+        data => this.onSensorsData(data),
+        error => this.presentAlert('Unexpected Error', error)
+    )
     //})
   }
 

@@ -87,16 +87,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _ionic_native_ble_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/ble/ngx */ "./node_modules/@ionic-native/ble/ngx/index.js");
+/* harmony import */ var _services_ble_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/ble.service */ "./src/app/main/services/ble.service.ts");
+
+
+
+
 
 
 
 
 var AcAnalysisPage = /** @class */ (function () {
-    function AcAnalysisPage(navCtrl, router) {
+    function AcAnalysisPage(navCtrl, router, 
+    //
+    toastCtrl, ble, ngZone, bleService, alertController) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.router = router;
+        this.toastCtrl = toastCtrl;
+        this.ble = ble;
+        this.ngZone = ngZone;
+        this.bleService = bleService;
+        this.alertController = alertController;
         this.selectedPath = '';
+        //
+        this.devices = [];
         this.router.events.subscribe(function (event) {
             _this.selectedPath = event.url;
         });
@@ -108,7 +123,12 @@ var AcAnalysisPage = /** @class */ (function () {
         console.log(ev);
     };
     AcAnalysisPage.prototype.getTempRecentStatus = function () {
-        this.recentTemp = 32;
+        var _this = this;
+        this.ngZone.run(function () {
+            console.log(_this.adv);
+            // this.recentTemp = this.adv[4];
+            _this.recentTemp = 0;
+        });
         if (this.category === 'celcius') {
             return this.recentTemp;
         }
@@ -256,9 +276,90 @@ var AcAnalysisPage = /** @class */ (function () {
         console.log("Pressed voltage");
         this.navCtrl.navigateRoot('/voltage-analysis');
     };
+    // To Erase Later
+    AcAnalysisPage.prototype.scan = function () {
+        var _this = this;
+        this.setStatus('Scanning for  SmartHVAC Devices');
+        this.devices = []; // clear list
+        this.ble.scan(['D0AF'], 1000000000000).subscribe(function (device) { return _this.onDeviceDiscovered(device); }, function (error) { return _this.scanError(error); });
+        setTimeout(this.setStatus.bind(this), 10000, 'Scan complete');
+    };
+    AcAnalysisPage.prototype.onDeviceDiscovered = function (device) {
+        var _this = this;
+        // console.log('Discovered ' + JSON.stringify(device, null, 2));
+        // this.presentAlertConfirm('Discovered ' + JSON.stringify(device, null, 2));
+        this.ngZone.run(function () {
+            console.log(' Name is ' + device.name);
+            // if (device.name.includes("RVACSD ")) {
+            _this.devices.push(device);
+            var mfgData = new Uint8Array(device.advertising.kCBAdvDataManufacturerData);
+            _this.adv = new Uint8Array(device.advertising.kCBAdvDataManufacturerData);
+            console.log(' Name is ' + device.name + ' Manufacturer Data is', mfgData);
+            // } else {
+            console.log('Cannot Put\n');
+            // }
+        });
+    };
+    // If location permission is denied, you'll end up here
+    AcAnalysisPage.prototype.scanError = function (error) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.setStatus('Error ' + error);
+                        return [4 /*yield*/, this.toastCtrl.create({
+                                message: 'Cannot Find SmartHAC Device',
+                                position: 'middle',
+                                duration: 20000
+                            })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AcAnalysisPage.prototype.setStatus = function (message) {
+        var _this = this;
+        console.log(message);
+        this.ngZone.run(function () {
+            _this.statusMessage = message;
+        });
+    };
+    AcAnalysisPage.prototype.deviceSelected = function (id, device) {
+        console.log(JSON.stringify(device) + ' selected');
+        this.bleService.setDevice(device);
+        this.router.navigateByUrl('/device-details/' + id);
+    };
+    AcAnalysisPage.prototype.showToast = function (msj) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toastCtrl.create({
+                            message: msj,
+                            duration: 1000
+                        })];
+                    case 1:
+                        toast = _a.sent();
+                        return [4 /*yield*/, toast.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     AcAnalysisPage.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] },
+        { type: _ionic_native_ble_ngx__WEBPACK_IMPORTED_MODULE_4__["BLE"] },
+        { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] },
+        { type: _services_ble_service__WEBPACK_IMPORTED_MODULE_5__["BleService"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] }
     ]; };
     AcAnalysisPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -266,7 +367,13 @@ var AcAnalysisPage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./ac-analysis.page.html */ "./node_modules/raw-loader/index.js!./src/app/main/ac-analysis/ac-analysis.page.html"),
             styles: [__webpack_require__(/*! ./ac-analysis.page.scss */ "./src/app/main/ac-analysis/ac-analysis.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
+            _ionic_native_ble_ngx__WEBPACK_IMPORTED_MODULE_4__["BLE"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"],
+            _services_ble_service__WEBPACK_IMPORTED_MODULE_5__["BleService"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]])
     ], AcAnalysisPage);
     return AcAnalysisPage;
 }());

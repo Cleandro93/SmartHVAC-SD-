@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button slot=\"start\" defaultHref=\"home\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Bluetooth</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button slot=\"end\" (click)=\"scan()\">Scan</ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!--  These -->\n  <ion-list>\n    <button ion-item *ngFor=\"let device of devices; id as i\" (click)=\"deviceSelected(id, device)\" >\n      <h2>{{device.name || 'Unnamed' }}</h2>\n      <p>{{device.id}}</p>\n      <p>RSSI: {{device.rssi}}</p>\n      <p> ADV: {{device.advertising.kCBAdvDataManufacturerData}}</p>\n      <p *ngFor=\"let data of adv\"> {{data}}</p>\n    </button>\n   </ion-list>\n  <!-- -->\n\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n    <p>{{ statusMessage }}</p>\n  </ion-toolbar>\n</ion-footer>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button slot=\"start\" defaultHref=\"main\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Bluetooth</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button slot=\"end\" (click)=\"scan()\">Scan</ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!--  These -->\n  <ion-list>\n    <button ion-item *ngFor=\"let device of devices; id as i\" (click)=\"deviceSelected(id, device)\" >\n    <h2>{{device.name || 'Unnamed' }}</h2>\n    <p>{{device.id}}</p>\n    <p>RSSI: {{device.rssi}}</p>\n    <p> ADV: {{device.advertising.kCBAdvDataManufacturerData}}</p>\n    <p *ngFor=\"let data of adv\"> {{data}}</p>\n    </button>\n   </ion-list>\n  \n  <!--  These \n  <div class=\"ion-padding\">\n    <ion-button (click)=\"presentAlertConfirm()\">Confirm</ion-button>\n  </div>\n  -->\n  \n\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n    <p>{{ statusMessage }}</p>\n  </ion-toolbar>\n</ion-footer>\n"
 
 /***/ }),
 
@@ -95,13 +95,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var BluetoothPage = /** @class */ (function () {
-    function BluetoothPage(router, toastCtrl, ble, ngZone, bleService) {
+    function BluetoothPage(router, toastCtrl, ble, ngZone, bleService, alertController) {
         this.router = router;
         this.toastCtrl = toastCtrl;
         this.ble = ble;
         this.ngZone = ngZone;
         this.bleService = bleService;
+        this.alertController = alertController;
         this.devices = [];
     }
     BluetoothPage.prototype.ngOnInit = function () {
@@ -114,21 +116,25 @@ var BluetoothPage = /** @class */ (function () {
     }*/
     BluetoothPage.prototype.scan = function () {
         var _this = this;
-        this.setStatus('Scanning for Bluetooth LE Devices');
+        this.setStatus('Scanning for  SmartHVAC Devices');
         this.devices = []; // clear list
-        this.ble.scan([], 10).subscribe(function (device) { return _this.onDeviceDiscovered(device); }, function (error) { return _this.scanError(error); });
+        this.ble.scan(['D0AF'], 10).subscribe(function (device) { return _this.onDeviceDiscovered(device); }, function (error) { return _this.scanError(error); });
         setTimeout(this.setStatus.bind(this), 10000, 'Scan complete');
     };
     BluetoothPage.prototype.onDeviceDiscovered = function (device) {
         var _this = this;
-        console.log('Discovered ' + JSON.stringify(device, null, 2));
+        // console.log('Discovered ' + JSON.stringify(device, null, 2));
+        // this.presentAlertConfirm('Discovered ' + JSON.stringify(device, null, 2));
         this.ngZone.run(function () {
+            console.log(' Name is ' + device.name);
+            // if (device.name.includes("RVACSD ")) {
             _this.devices.push(device);
-            //if (device.name == 'RVACSD' && device.advertising.kCBAdvDataManufacturerData) {
             var mfgData = new Uint8Array(device.advertising.kCBAdvDataManufacturerData);
             _this.adv = new Uint8Array(device.advertising.kCBAdvDataManufacturerData);
-            console.log(' Name is ' + device.name + ' Manufacturer Data is', mfgData); //mfgData);
-            //  }
+            console.log(' Name is ' + device.name + ' Manufacturer Data is', mfgData);
+            // } else {
+            console.log('Cannot Put\n');
+            // }
         });
     };
     // If location permission is denied, you'll end up here
@@ -140,9 +146,9 @@ var BluetoothPage = /** @class */ (function () {
                     case 0:
                         this.setStatus('Error ' + error);
                         return [4 /*yield*/, this.toastCtrl.create({
-                                message: 'Error scanning for Bluetooth low energy devices',
+                                message: 'Cannot Find SmartHAC Device',
                                 position: 'middle',
-                                duration: 2000
+                                duration: 20000
                             })];
                     case 1:
                         toast = _a.sent();
@@ -162,14 +168,82 @@ var BluetoothPage = /** @class */ (function () {
     BluetoothPage.prototype.deviceSelected = function (id, device) {
         console.log(JSON.stringify(device) + ' selected');
         this.bleService.setDevice(device);
-        this.router.navigateByUrl('/device-details/' + id);
+        this.router.navigateByUrl('/device-details' + id);
+    };
+    BluetoothPage.prototype.showToast = function (msj) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toastCtrl.create({
+                            message: msj,
+                            duration: 1000
+                        })];
+                    case 1:
+                        toast = _a.sent();
+                        return [4 /*yield*/, toast.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    BluetoothPage.prototype.presentAlertConfirm = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert, result;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: '',
+                            message: '',
+                            buttons: [
+                                {
+                                    text: 'Cancel',
+                                    role: 'cancel',
+                                    cssClass: 'secondary',
+                                    handler: function (blah) {
+                                        console.log('Confirm Cancel: blah');
+                                    }
+                                }, {
+                                    text: 'Okay',
+                                    handler: function () {
+                                        console.log('Confirm Okay');
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        //for (let i = 0; i < this.devices.length; i ++) {
+                        /*for (const device of this.devices) {
+                          alert.message.concat('\n' + (device.name || 'Unnamed') );
+                        }
+                        */
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        //for (let i = 0; i < this.devices.length; i ++) {
+                        /*for (const device of this.devices) {
+                          alert.message.concat('\n' + (device.name || 'Unnamed') );
+                        }
+                        */
+                        _a.sent();
+                        return [4 /*yield*/, alert.onDidDismiss()];
+                    case 3:
+                        result = _a.sent();
+                        console.log(result);
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     BluetoothPage.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] },
         { type: _ionic_native_ble_ngx__WEBPACK_IMPORTED_MODULE_4__["BLE"] },
         { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] },
-        { type: _services_ble_service__WEBPACK_IMPORTED_MODULE_5__["BleService"] }
+        { type: _services_ble_service__WEBPACK_IMPORTED_MODULE_5__["BleService"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] }
     ]; };
     BluetoothPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -181,7 +255,8 @@ var BluetoothPage = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"],
             _ionic_native_ble_ngx__WEBPACK_IMPORTED_MODULE_4__["BLE"],
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"],
-            _services_ble_service__WEBPACK_IMPORTED_MODULE_5__["BleService"]])
+            _services_ble_service__WEBPACK_IMPORTED_MODULE_5__["BleService"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]])
     ], BluetoothPage);
     return BluetoothPage;
 }());

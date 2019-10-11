@@ -7,20 +7,20 @@
 		<key>ApplicationPath</key>
 		<string>Applications/MyApp.app</string>
 		<key>CFBundleIdentifier</key>
-		<string>io2019.ionicbl.starter</string>
+		<string>io12019.ionicbl.starter</string>
 		<key>CFBundleShortVersionString</key>
 		<string>0.0.1</string>
 		<key>CFBundleVersion</key>
 		<string>0.0.1</string>
 		<key>SigningIdentity</key>
-		<string>iPhone Developer: claudio_leandro3@hotmail.com (64H79Q49JC)</string>
+		<string>Apple Development: claudio_leandro3@hotmail.com (64H79Q49JC)</string>
 		<key>Team</key>
 		<string>88U6L2YX5K</string>
 	</dict>
 	<key>ArchiveVersion</key>
 	<integer>2</integer>
 	<key>CreationDate</key>
-	<date>2019-09-12T15:02:31Z</date>
+	<date>2019-10-06T18:37:53Z</date>
 	<key>Name</key>
 	<string>MyApp</string>
 	<key>SchemeName</key>

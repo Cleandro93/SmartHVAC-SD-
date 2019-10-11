@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button slot="start" defaultHref="home"></ion-back-button>
+      <ion-back-button slot="start" defaultHref="main"></ion-back-button>
     </ion-buttons>
     <ion-title>Bluetooth</ion-title>
     <ion-buttons slot="end">
@@ -14,14 +14,20 @@
   <!--  These -->
   <ion-list>
     <button ion-item *ngFor="let device of devices; id as i" (click)="deviceSelected(id, device)" >
-      <h2>{{device.name || 'Unnamed' }}</h2>
-      <p>{{device.id}}</p>
-      <p>RSSI: {{device.rssi}}</p>
-      <p> ADV: {{device.advertising.kCBAdvDataManufacturerData}}</p>
-      <p *ngFor="let data of adv"> {{data}}</p>
+    <h2>{{device.name || 'Unnamed' }}</h2>
+    <p>{{device.id}}</p>
+    <p>RSSI: {{device.rssi}}</p>
+    <p> ADV: {{device.advertising.kCBAdvDataManufacturerData}}</p>
+    <p *ngFor="let data of adv"> {{data}}</p>
     </button>
    </ion-list>
-  <!-- -->
+  
+  <!--  These 
+  <div class="ion-padding">
+    <ion-button (click)="presentAlertConfirm()">Confirm</ion-button>
+  </div>
+  -->
+  
 
 </ion-content>
 
