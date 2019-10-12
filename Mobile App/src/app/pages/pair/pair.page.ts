@@ -54,7 +54,7 @@ export class PairPage implements OnInit {
   }
 
   goToThermoAnalysis() {
-    this.navCtrl.navigateRoot('/thermostat-analysis');
+    this.navCtrl.navigateRoot('/thermostat');
   }
 
   goToAnalysisHistory() {

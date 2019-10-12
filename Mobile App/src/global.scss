@@ -91,13 +91,22 @@ div.signalDisplay p {
     color: #06367e;
 }
 
-div.thermostatButtons {
+div.thermostatButtonsUp {
     //width: 100px;
     //height: 100px;
     display: inline-block;
     float: left;
-    padding-left: 1.0cm;
-    padding-right: 1.0cm;
+    padding-left: 0.5cm;
+    padding-right: 0.5cm;
+}
+
+div.thermostatButtonsDown {
+    //width: 100px;
+    //height: 100px;
+    display: inline-block;
+    float: right;
+    padding-left: 0.3cm;
+    padding-right: 0.3cm;
 }
 
 div.signalControl {
@@ -106,6 +115,35 @@ div.signalControl {
     float: right;
     padding-left: 0cm;
 }
+
+div.fanHighLabel {
+    //width: 100px;
+    //height: 100px;
+    display: inline-block;
+    float: left;
+    padding-left: 2cm;
+    padding-right: 0cm;
+}
+div.fanLowLabel {
+    //width: 100px;
+    //height: 100px;
+    display: inline-block;
+    float: right;
+    padding-left: 0cm;
+    padding-right: 2cm;
+}
+
+div.fanToggle {
+    //width: 100px;
+    //height: 100px;
+    position: center;
+    text-align:center;
+    display: inline-block;
+    float: right;
+    padding-left: 0cm;
+}
+
+
 
 div.sensorsDisplay {
     position: relative;
@@ -119,6 +157,30 @@ div.sensorsDisplay {
 }
 
 div.sensorsDisplay p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    color: #06367e;
+}
+
+div.sensorsDisplayThermo {
+    position: relative;
+    width: 118px;
+    height: 70px;
+    border: 5px solid #06367e;
+    font-size: 38px;
+    text-align:center;
+    display: inline-block;
+    background-color: #c0e3f7;
+    display: inline-block;
+    float: left;
+    padding-left: 0cm;
+}
+
+div.sensorsDisplayThermo p {
     margin: 0;
     position: absolute;
     top: 50%;

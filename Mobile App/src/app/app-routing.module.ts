@@ -7,7 +7,6 @@ const routes: Routes = [
   { path: 'pair', loadChildren: './pages/pair/pair.module#PairPageModule' },
   { path: 'ac-analysis', loadChildren: './pages/ac-analysis/ac-analysis.module#AcAnalysisPageModule' },
   { path: 'device-information', loadChildren: './pages/device-information/device-information.module#DeviceInformationPageModule' },
-  { path: 'thermostat-analysis', loadChildren: './pages/thermostat-analysis/thermostat-analysis.module#ThermostatAnalysisPageModule' },
   { path: 'help', loadChildren: './pages/help/help.module#HelpPageModule' },
   { path: 'analysis-history', loadChildren: './pages/analysis-history/analysis-history.module#AnalysisHistoryPageModule' },
   { path: 'voltage-analysis', loadChildren: './pages/ac-analysis/voltage-analysis/voltage-analysis.module#VoltageAnalysisPageModule' },
@@ -29,6 +28,7 @@ const routes: Routes = [
     },
     loadChildren: './pages/device-details/device-details.module#DeviceDetailsPageModule'
   },
+  { path: 'thermostat', loadChildren: './pages/thermostat/thermostat.module#ThermostatPageModule' },
 ];
 
 @NgModule({

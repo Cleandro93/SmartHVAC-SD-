@@ -33,7 +33,7 @@ export class TestPage implements OnInit {
         break;
       }
       case 'thermostat': {
-        this.navCtrl.navigateRoot('/thermostat-analysis');
+        this.navCtrl.navigateRoot('/thermostat');
         break;
       }
       case 'test': {
