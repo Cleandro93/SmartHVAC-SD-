@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="tertiary"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-segment (ionChange)="segmentChanged($event)" value="test">
+    <ion-segment-button value="connection">
+      <ion-label>BLE Connection</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="liveData">
+      <ion-label>Live Data</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="thermostat">
+      <ion-label>Thermostat</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="test">
+      <ion-label>Test</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>
+
+</ion-content>

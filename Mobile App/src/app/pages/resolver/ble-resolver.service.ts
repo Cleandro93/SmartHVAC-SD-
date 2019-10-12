@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { BleService } from './../services/ble.service';
+import { BleService } from '../services/ble.service';
 
 @Injectable({
   providedIn: 'root'

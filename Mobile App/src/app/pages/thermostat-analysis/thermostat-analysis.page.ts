@@ -22,12 +22,7 @@ export class ThermostatAnalysisPage implements OnInit {
     devices: any[];
     statusMessage: string;
 
-    //
-    //device: any = {};
-    //sensorData:Uint8Array;
-    //statusMessage: string;
-
-    constructor(private navCtrl: NavController, 
+    constructor(private navCtrl: NavController,
                 private route: ActivatedRoute,
                 private router: Router,
                 private ngZone: NgZone,
@@ -41,7 +36,29 @@ export class ThermostatAnalysisPage implements OnInit {
 
     segmentChanged(ev: any) {
       this.category = ev.detail.value;
-      //console.log(ev);
+      console.log(ev);
+      switch (this.category) {
+        case 'connection': {
+          this.navCtrl.navigateRoot('/pair');
+          break;
+        }
+        case 'liveData': {
+          this.navCtrl.navigateRoot('/ac-analysis');
+          break;
+        }
+        case 'thermostat': {
+          this.navCtrl.navigateRoot('/thermostat-analysis');
+          break;
+        }
+        case 'test': {
+          this.navCtrl.navigateRoot('/test');
+          break;
+        }
+        default: {
+          this.navCtrl.navigateRoot('/thermostat');
+          break;
+        }
+      }
     }
 
     getAmbTempStatus() {

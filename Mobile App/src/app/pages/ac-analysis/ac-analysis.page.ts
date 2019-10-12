@@ -67,6 +67,28 @@ export class AcAnalysisPage implements OnInit {
   segmentChanged(ev: any) {
     this.category = ev.detail.value;
     console.log(ev);
+    switch (this.category) {
+      case 'connection': {
+        this.navCtrl.navigateRoot('/pair');
+        break;
+      }
+      case 'liveData': {
+        this.navCtrl.navigateRoot('/ac-analysis');
+        break;
+      }
+      case 'thermostat': {
+        this.navCtrl.navigateRoot('/thermostat-analysis');
+        break;
+      }
+      case 'test': {
+        this.navCtrl.navigateRoot('/test');
+        break;
+      }
+      default: {
+        this.navCtrl.navigateRoot('/thermostat-analysis');
+        break;
+      }
+    }
   }
 
   getTempRecentStatus() {
