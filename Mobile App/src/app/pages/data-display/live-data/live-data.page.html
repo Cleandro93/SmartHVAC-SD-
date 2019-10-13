@@ -21,102 +21,105 @@
 </ion-header>
 
 <ion-content>
-  <!-- fab placed to the bottom end -->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="arrow-dropleft"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-list side="start">
-      <ion-fab-button><ion-button color="tertiary" (click)="goToVoltageAnalysis()"><b>V</b></ion-button></ion-fab-button>
-      <ion-fab-button><ion-button color="tertiary" (click)="goToCurrentAnalysis()"><b>C</b></ion-button></ion-fab-button>
-      <ion-fab-button><ion-button color="tertiary" (click)="goToPowerConAnalysis()"><b>P</b></ion-button></ion-fab-button>
-      <ion-fab-button><ion-button color="tertiary" (click)="goToVibrationAnalysis()"><b>Vi</b></ion-button></ion-fab-button>
-      <ion-fab-button><ion-button color="tertiary" (click)="goToHumidityAnalysis()"><b>H</b></ion-button></ion-fab-button>
-      <ion-fab-button><ion-button color="primary" (click)="goToTemperatureAnalysis()"><b>T</b></ion-button></ion-fab-button>
-    </ion-fab-list>
-  </ion-fab>
-
   <ion-grid>
     <ion-row center>
       <ion-col text-center>
-        <h4>Compressor</h4>
+        <h4>Temperature & Humidity</h4>
+        <div class="readerLeft" >
+          <p><b>Cabin<br>Temperature</b>
+          </p>
+        </div>
+        <div class="readerRight" >
+          <p><b>Cabin<br>Humidity</b>
+          </p>
+        </div>
         <div class="sensorsDisplay"><p>{{ getTempRecentStatus() }}</div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="sensorsDisplay"><p>{{ getTempDailyStatus() }}</div>
-        <div class="sensorsDisplay"><p>{{ getTempWeeklyStatus() }}</div>
-        <p class="reader" ><b>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Recent
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Daily Average
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Weekly Average</b></p>
-        <h4>Evaporator</h4>
+        <!-- More Data-->
+        <div class="readerLeft" >
+          <p><b>Compressor<br>Temperature</b>
+          </p>
+        </div>
+        <div class="readerRightTemp" >
+          <p><b>Expasion<br>Temperature</b>
+          </p>
+        </div>
         <div class="sensorsDisplay"><p>{{ getTempRecentStatus() }}</div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="sensorsDisplay"><p>{{ getTempDailyStatus() }}</div>
-        <div class="sensorsDisplay"><p>{{ getTempWeeklyStatus() }}</div>
-        <p class="reader" ><b>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Recent
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Daily Average
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Weekly Average</b></p>
-        <h4>Other</h4>
+        <!-- More Data-->
+        <div class="readerMiddle" >
+          <p><b>Evaporator<br>Temperature</b>
+          </p>
+        </div>
         <div class="sensorsDisplay"><p>{{ getTempRecentStatus() }}</div>
-        <div class="sensorsDisplay"><p>{{ getTempDailyStatus() }}</div>
-        <div class="sensorsDisplay"><p>{{ getTempWeeklyStatus() }}</div>
-        <p class="reader" ><b>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Recent
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Daily Average
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Weekly Average</b></p>
-        <h4>Other</h4>
-        <div class="sensorsDisplay"><p>{{ getTempRecentStatus() }}</div>
-        <div class="sensorsDisplay"><p>{{ getTempDailyStatus() }}</div>
-        <div class="sensorsDisplay"><p>{{ getTempWeeklyStatus() }}</div>
-        <p class="reader" ><b>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Recent
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Daily Average
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Weekly Average</b></p>
 
-        <!--
-        <h4>Temperature</h4>
+        <h4>Power</h4>
+        <div class="readerTripleLeft" >
+          <p><b>Compressor<br>Voltage</b>
+          </p>
+        </div>
+        <div class="readerTripleRight" >
+          <p><b>Fan High<br>Voltage</b>
+          </p>
+        </div>
+        <div class="readerTripleMiddle" >
+          <p><b>Fan Low<br>Voltage</b>
+          </p>
+        </div>
         <div class="sensorsDisplay"><p>{{ getTempRecentStatus() }}</div>
         <div class="sensorsDisplay"><p>{{ getTempDailyStatus() }}</div>
-        <div class="sensorsDisplay"><p>{{ getTempWeeklyStatus() }}</div>
-        <p class="reader" ><b>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Recent
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Daily Average
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Weekly Average</b></p>
-        <h4>Temperature</h4>
+        <div class="sensorsDisplay"><p>{{ getTempDailyStatus() }}</div>
+        <!-- More Data-->
+        <div class="readerTripleLeft" >
+          <p><b>Compressor<br>Current</b>
+          </p>
+        </div>
+        <div class="readerTripleRight" >
+          <p><b>Fan High<br>Current</b>
+          </p>
+        </div>
+        <div class="readerTripleMiddle" >
+          <p><b>Fan Low<br>Current</b>
+          </p>
+        </div>
         <div class="sensorsDisplay"><p>{{ getTempRecentStatus() }}</div>
         <div class="sensorsDisplay"><p>{{ getTempDailyStatus() }}</div>
-        <div class="sensorsDisplay"><p>{{ getTempWeeklyStatus() }}</div>
-        <p class="reader" ><b>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Recent
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Daily Average
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Weekly Average</b></p>
-        -->
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-grid>
-    <ion-row center>
-      <ion-col text-center>
-          <ion-button shape="round" size="default" expland="block">
-            <ion-back-button color="tertiary" defaultHref="/main"></ion-back-button>
-          </ion-button>
+        <div class="sensorsDisplay"><p>{{ getTempDailyStatus() }}</div>
+        <!-- More Data-->
+        <div class="readerTripleLeftFreq" >
+          <p><b>Compressor<br>Frequency</b>
+          </p>
+        </div>
+        <div class="readerTripleRightFreq" >
+          <p><b>Fan High<br>Frequency</b>
+          </p>
+        </div>
+        <div class="readerTripleMiddleFreq" >
+          <p><b>Fan Low<br>Frequency</b>
+          </p>
+        </div>
+        <div class="sensorsDisplay"><p>{{ getTempRecentStatus() }}</div>
+        <div class="sensorsDisplay"><p>{{ getTempDailyStatus() }}</div>
+        <div class="sensorsDisplay"><p>{{ getTempDailyStatus() }}</div>
+        
+        <h4>Vibration</h4>
+        <div class="readerTripleLeftVib" >
+          <p><b>X-axis</b>
+          </p>
+        </div>
+        <div class="readerTripleRightVib" >
+          <p><b>Y-axis</b>
+          </p>
+        </div>
+        <div class="readerTripleMiddleVib" >
+          <p><b>Z-axis</b>
+          </p>
+        </div>
+        <div class="sensorsDisplay"><p>{{ getTempRecentStatus() }}</div>
+        <div class="sensorsDisplay"><p>{{ getTempDailyStatus() }}</div>
+        <div class="sensorsDisplay"><p>{{ getTempDailyStatus() }}</div>
       </ion-col>
     </ion-row>
   </ion-grid>

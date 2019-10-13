@@ -146,13 +146,16 @@ div.fanToggle {
 
 div.sensorsDisplay {
     position: relative;
-    width: 118px;
+    width: 109px;
     height: 70px;
     border: 5px solid #06367e;
     font-size: 38px;
     text-align:center;
     display: inline-block;
     background-color: #c0e3f7;
+    //float: left;
+    padding-left: 0.5cm;
+    padding-right: 0.5cm
 }
 
 div.sensorsDisplay p {
@@ -167,7 +170,7 @@ div.sensorsDisplay p {
 
 div.sensorsDisplayThermo {
     position: relative;
-    width: 118px;
+    width: 110px;
     height: 70px;
     border: 5px solid #06367e;
     font-size: 38px;
@@ -193,3 +196,114 @@ div.sensorsDisplayThermo p {
     font-size: 13px;
     color: #06367e;
 }
+
+div.readerLeft{
+    font-size: 15px;
+    color: #06367e;
+    display: inline-block;
+    float: left;
+    padding-left: 1.5cm;
+    padding-right: 0.5cm;
+}
+div.readerRight{
+    font-size: 15px;
+    color: #06367e;
+    display: inline-block;
+    float: right;
+    padding-left: 0.5cm;
+    padding-right: 1.8cm;
+}
+div.readerRightTemp{
+    font-size: 15px;
+    color: #06367e;
+    display: inline-block;
+    float: right;
+    padding-left: 0.5cm;
+    padding-right: 1.5cm;
+}
+
+div.readerMiddle{
+    font-size: 15px;
+    color: #06367e;
+}
+div.readerLeft{
+    font-size: 15px;
+    color: #06367e;
+    display: inline-block;
+    float: left;
+    padding-left: 1.5cm;
+    padding-right: 0.5cm;
+}
+div.readerTripleLeft{
+    font-size: 15px;
+    color: #06367e;
+    display: inline-block;
+    float: left;
+    padding-left: 0.7cm;
+    padding-right: 0.5cm;
+}
+div.readerTripleRight{
+    font-size: 15px;
+    color: #06367e;
+    display: inline-block;
+    float: right;
+    padding-left: 0.2cm;
+    padding-right: 1cm;
+}
+div.readerTripleMiddle{
+    font-size: 15px;
+    color: #06367e;
+    display: inline-block;
+    float: left;
+    padding-left: 0.5cm;
+    padding-right: 0cm;
+}
+div.readerTripleLeftFreq{
+    font-size: 15px;
+    color: #06367e;
+    display: inline-block;
+    float: left;
+    padding-left: 0.7cm;
+    padding-right: 0.2cm;
+}
+div.readerTripleRightFreq{
+    font-size: 15px;
+    color: #06367e;
+    display: inline-block;
+    float: right;
+    padding-left: 0.4cm;
+    padding-right: 0.9cm;
+}
+div.readerTripleMiddleFreq{
+    font-size: 15px;
+    color: #06367e;
+    display: inline-block;
+    float: left;
+    padding-left: 0.5cm;
+    padding-right: 0cm;
+}
+div.readerTripleLeftVib{
+    font-size: 15px;
+    color: #06367e;
+    display: inline-block;
+    float: left;
+    padding-left: 1.3cm;
+    padding-right: 1cm;
+}
+div.readerTripleMiddleVib{
+    font-size: 15px;
+    color: #06367e;
+    display: inline-block;
+    float: left;
+    padding-left: 0.5cm;
+    padding-right: 0cm;
+}
+div.readerTripleRightVib{
+    font-size: 15px;
+    color: #06367e;
+    display: inline-block;
+    float: right;
+    padding-left: 0m;
+    padding-right: 1.3cm;
+}
+
