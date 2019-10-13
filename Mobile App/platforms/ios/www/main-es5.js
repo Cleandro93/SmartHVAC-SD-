@@ -8,65 +8,61 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./main/ac-analysis/ac-analysis.module": [
-		"./src/app/main/ac-analysis/ac-analysis.module.ts",
-		"main-ac-analysis-ac-analysis-module"
+	"../data-display/humidity-analysis/humidity-analysis.module": [
+		"./src/app/pages/data-display/humidity-analysis/humidity-analysis.module.ts",
+		"data-display-humidity-analysis-humidity-analysis-module"
 	],
-	"./main/ac-analysis/current-analysis/current-analysis.module": [
-		"./src/app/main/ac-analysis/current-analysis/current-analysis.module.ts",
-		"main-ac-analysis-current-analysis-current-analysis-module"
+	"../data-display/live-data/live-data.module": [
+		"./src/app/pages/data-display/live-data/live-data.module.ts",
+		"data-display-live-data-live-data-module"
 	],
-	"./main/ac-analysis/humidity-analysis/humidity-analysis.module": [
-		"./src/app/main/ac-analysis/humidity-analysis/humidity-analysis.module.ts",
-		"main-ac-analysis-humidity-analysis-humidity-analysis-module"
+	"../data-display/power-analysis/power-analysis.module": [
+		"./src/app/pages/data-display/power-analysis/power-analysis.module.ts",
+		"data-display-power-analysis-power-analysis-module"
 	],
-	"./main/ac-analysis/power-consumption-analysis/power-consumption-analysis.module": [
-		"./src/app/main/ac-analysis/power-consumption-analysis/power-consumption-analysis.module.ts",
-		"main-ac-analysis-power-consumption-analysis-power-consumption-analysis-module"
+	"../data-display/temperature-analysis/temperature-analysis.module": [
+		"./src/app/pages/data-display/temperature-analysis/temperature-analysis.module.ts",
+		"data-display-temperature-analysis-temperature-analysis-module"
 	],
-	"./main/ac-analysis/temperature-analysis/temperature-analysis.module": [
-		"./src/app/main/ac-analysis/temperature-analysis/temperature-analysis.module.ts",
-		"main-ac-analysis-temperature-analysis-temperature-analysis-module"
+	"../data-display/vibration-analysis/vibration-analysis.module": [
+		"./src/app/pages/data-display/vibration-analysis/vibration-analysis.module.ts",
+		"data-display-vibration-analysis-vibration-analysis-module"
 	],
-	"./main/ac-analysis/vibration-analysis/vibration-analysis.module": [
-		"./src/app/main/ac-analysis/vibration-analysis/vibration-analysis.module.ts",
-		"main-ac-analysis-vibration-analysis-vibration-analysis-module"
+	"./pages/analysis-history/analysis-history.module": [
+		"./src/app/pages/analysis-history/analysis-history.module.ts",
+		"pages-analysis-history-analysis-history-module"
 	],
-	"./main/ac-analysis/voltage-analysis/voltage-analysis.module": [
-		"./src/app/main/ac-analysis/voltage-analysis/voltage-analysis.module.ts",
-		"main-ac-analysis-voltage-analysis-voltage-analysis-module"
+	"./pages/bluetooth/bluetooth.module": [
+		"./src/app/pages/bluetooth/bluetooth.module.ts",
+		"pages-bluetooth-bluetooth-module"
 	],
-	"./main/analysis-history/analysis-history.module": [
-		"./src/app/main/analysis-history/analysis-history.module.ts",
-		"main-analysis-history-analysis-history-module"
+	"./pages/device-details/device-details.module": [
+		"./src/app/pages/device-details/device-details.module.ts",
+		"pages-device-details-device-details-module"
 	],
-	"./main/bluetooth/bluetooth.module": [
-		"./src/app/main/bluetooth/bluetooth.module.ts",
-		"main-bluetooth-bluetooth-module"
+	"./pages/device-information/device-information.module": [
+		"./src/app/pages/device-information/device-information.module.ts",
+		"pages-device-information-device-information-module"
 	],
-	"./main/device-details/device-details.module": [
-		"./src/app/main/device-details/device-details.module.ts",
-		"main-device-details-device-details-module"
+	"./pages/help/help.module": [
+		"./src/app/pages/help/help.module.ts",
+		"pages-help-help-module"
 	],
-	"./main/device-information/device-information.module": [
-		"./src/app/main/device-information/device-information.module.ts",
-		"main-device-information-device-information-module"
+	"./pages/pair/pair.module": [
+		"./src/app/pages/pair/pair.module.ts",
+		"pages-pair-pair-module"
 	],
-	"./main/help/help.module": [
-		"./src/app/main/help/help.module.ts",
-		"main-help-help-module"
+	"./pages/tabs/tabs.module": [
+		"./src/app/pages/tabs/tabs.module.ts",
+		"pages-tabs-tabs-module"
 	],
-	"./main/main.module": [
-		"./src/app/main/main.module.ts",
-		"main-main-module"
+	"./pages/test/test.module": [
+		"./src/app/pages/test/test.module.ts",
+		"pages-test-test-module"
 	],
-	"./main/pair/pair.module": [
-		"./src/app/main/pair/pair.module.ts",
-		"main-pair-pair-module"
-	],
-	"./main/thermostat-analysis/thermostat-analysis.module": [
-		"./src/app/main/thermostat-analysis/thermostat-analysis.module.ts",
-		"main-thermostat-analysis-thermostat-analysis-module"
+	"./pages/thermostat/thermostat.module": [
+		"./src/app/pages/thermostat/thermostat.module.ts",
+		"pages-thermostat-thermostat-module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -536,38 +532,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _main_resolver_ble_resolver_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./main/resolver/ble-resolver.service */ "./src/app/main/resolver/ble-resolver.service.ts");
+/* harmony import */ var _pages_resolver_ble_resolver_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/resolver/ble-resolver.service */ "./src/app/pages/resolver/ble-resolver.service.ts");
 
 
 
 
 var routes = [
-    { path: '', redirectTo: 'main', pathMatch: 'full' },
-    { path: 'main', loadChildren: './main/main.module#MainPageModule' },
-    { path: 'pair', loadChildren: './main/pair/pair.module#PairPageModule' },
-    { path: 'ac-analysis', loadChildren: './main/ac-analysis/ac-analysis.module#AcAnalysisPageModule' },
-    { path: 'device-information', loadChildren: './main/device-information/device-information.module#DeviceInformationPageModule' },
-    { path: 'thermostat-analysis', loadChildren: './main/thermostat-analysis/thermostat-analysis.module#ThermostatAnalysisPageModule' },
-    { path: 'help', loadChildren: './main/help/help.module#HelpPageModule' },
-    { path: 'analysis-history', loadChildren: './main/analysis-history/analysis-history.module#AnalysisHistoryPageModule' },
-    { path: 'voltage-analysis', loadChildren: './main/ac-analysis/voltage-analysis/voltage-analysis.module#VoltageAnalysisPageModule' },
-    // tslint:disable-next-line: max-line-length
-    { path: 'temperature-analysis', loadChildren: './main/ac-analysis/temperature-analysis/temperature-analysis.module#TemperatureAnalysisPageModule' },
-    { path: 'humidity-analysis', loadChildren: './main/ac-analysis/humidity-analysis/humidity-analysis.module#HumidityAnalysisPageModule' },
-    // tslint:disable-next-line: max-line-length
-    { path: 'power-consumption-analysis', loadChildren: './main/ac-analysis/power-consumption-analysis/power-consumption-analysis.module#PowerConsumptionAnalysisPageModule' },
-    { path: 'current-analysis', loadChildren: './main/ac-analysis/current-analysis/current-analysis.module#CurrentAnalysisPageModule' },
-    // tslint:disable-next-line: max-line-length
-    { path: 'vibration-analysis', loadChildren: './main/ac-analysis/vibration-analysis/vibration-analysis.module#VibrationAnalysisPageModule' },
-    { path: 'bluetooth', loadChildren: './main/bluetooth/bluetooth.module#BluetoothPageModule' },
-    { path: 'device-details', loadChildren: './main/device-details/device-details.module#DeviceDetailsPageModule' },
+    { path: '', redirectTo: 'pair', pathMatch: 'full' },
+    { path: 'pair', loadChildren: './pages/pair/pair.module#PairPageModule' },
+    { path: 'device-information', loadChildren: './pages/device-information/device-information.module#DeviceInformationPageModule' },
+    { path: 'help', loadChildren: './pages/help/help.module#HelpPageModule' },
+    { path: 'analysis-history', loadChildren: './pages/analysis-history/analysis-history.module#AnalysisHistoryPageModule' },
+    { path: 'bluetooth', loadChildren: './pages/bluetooth/bluetooth.module#BluetoothPageModule' },
+    { path: 'test', loadChildren: './pages/test/test.module#TestPageModule' },
+    { path: 'device-details', loadChildren: './pages/device-details/device-details.module#DeviceDetailsPageModule' },
     {
         path: 'device-details/:id',
         resolve: {
-            special: _main_resolver_ble_resolver_service__WEBPACK_IMPORTED_MODULE_3__["BleResolverService"]
+            special: _pages_resolver_ble_resolver_service__WEBPACK_IMPORTED_MODULE_3__["BleResolverService"]
         },
-        loadChildren: './main/device-details/device-details.module#DeviceDetailsPageModule'
-    }
+        loadChildren: './pages/device-details/device-details.module#DeviceDetailsPageModule'
+    },
+    { path: 'thermostat', loadChildren: './pages/thermostat/thermostat.module#ThermostatPageModule' },
+    { path: 'tabs', loadChildren: './pages/tabs/tabs.module#TabsPageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -725,10 +712,10 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/main/resolver/ble-resolver.service.ts":
-/*!*******************************************************!*\
-  !*** ./src/app/main/resolver/ble-resolver.service.ts ***!
-  \*******************************************************/
+/***/ "./src/app/pages/resolver/ble-resolver.service.ts":
+/*!********************************************************!*\
+  !*** ./src/app/pages/resolver/ble-resolver.service.ts ***!
+  \********************************************************/
 /*! exports provided: BleResolverService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -737,7 +724,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BleResolverService", function() { return BleResolverService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _services_ble_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../services/ble.service */ "./src/app/main/services/ble.service.ts");
+/* harmony import */ var _services_ble_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/ble.service */ "./src/app/pages/services/ble.service.ts");
 
 
 
@@ -765,10 +752,10 @@ var BleResolverService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/main/services/ble.service.ts":
-/*!**********************************************!*\
-  !*** ./src/app/main/services/ble.service.ts ***!
-  \**********************************************/
+/***/ "./src/app/pages/services/ble.service.ts":
+/*!***********************************************!*\
+  !*** ./src/app/pages/services/ble.service.ts ***!
+  \***********************************************/
 /*! exports provided: BleService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 

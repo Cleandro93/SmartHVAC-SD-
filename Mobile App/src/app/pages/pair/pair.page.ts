@@ -31,11 +31,11 @@ export class PairPage implements OnInit {
         break;
       }
       case 'liveData': {
-        this.navCtrl.navigateRoot('/ac-analysis');
+        this.navCtrl.navigateRoot('/tabs');
         break;
       }
       case 'thermostat': {
-        this.navCtrl.navigateRoot('/thermostat-analysis');
+        this.navCtrl.navigateRoot('/thermostat');
         break;
       }
       case 'test': {

@@ -105,8 +105,8 @@ div.thermostatButtonsDown {
     //height: 100px;
     display: inline-block;
     float: right;
-    padding-left: 0.3cm;
-    padding-right: 0.3cm;
+    padding-left: 0.5cm;
+    padding-right: 0.5cm;
 }
 
 div.signalControl {
@@ -114,6 +114,7 @@ div.signalControl {
     display: inline-block;
     float: right;
     padding-left: 0cm;
+    padding-right: 0cm;
 }
 
 div.fanHighLabel {
@@ -142,8 +143,6 @@ div.fanToggle {
     float: right;
     padding-left: 0cm;
 }
-
-
 
 div.sensorsDisplay {
     position: relative;
@@ -176,7 +175,7 @@ div.sensorsDisplayThermo {
     display: inline-block;
     background-color: #c0e3f7;
     display: inline-block;
-    float: left;
+    //float: left;
     padding-left: 0cm;
 }
 
