@@ -3,6 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button color="tertiary"></ion-menu-button>
     </ion-buttons>
+    <div class="light" slot="end"></div>
   </ion-toolbar>
   <ion-segment (ionChange)="segmentChanged($event)" value="liveData">
     <ion-segment-button value="connection">
@@ -37,6 +38,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="sensorsDisplay"><p>{{ getTempDailyStatus() }}</div>
         <!-- More Data-->
+        <br>
         <div class="readerLeft" >
           <p><b>Compressor<br>Temperature</b>
           </p>
