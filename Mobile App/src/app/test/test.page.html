@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="tertiary"></ion-menu-button>
+    </ion-buttons>
+    <!-- <div class="light" slot="end"></div> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <br><br><br><br><br>
+    <div class="signalStatus">
+        <div id="rValue"><p>R</p></div><br><br><br>
+        <div id="yValue"><p>Y</p></div><br><br><br>
+        <div id="ghValue"><p>GH</p></div><br><br><br>
+        <div id="glValue"><p>GL</p></div><br><br><br>
+        <div id="wValue"><p>W</p></div><br><br><br>
+        <div id="bValue"><p>B</p></div>
+    </div>
+    <div class="signalControl">
+        <ion-toggle class="signalsToggles" color="primary" [(ngModel)]="rToogle" (ionChange)="signalLineChanged()"></ion-toggle><br><br><br>
+        <ion-toggle class="signalsToggles" color="primary"></ion-toggle><br><br><br>
+        <ion-toggle class="signalsToggles" color="primary"></ion-toggle><br><br><br>
+        <ion-toggle class="signalsToggles" color="primary"></ion-toggle><br><br><br>
+        <ion-toggle class="signalsToggles" color="primary"></ion-toggle><br><br><br>
+        <ion-toggle class="signalsToggles" color="primary"></ion-toggle><br><br><br>
+    </div>
+
+</ion-content>

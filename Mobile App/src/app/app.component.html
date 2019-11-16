@@ -1,0 +1,62 @@
+<ion-app>
+  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane>
+    <ion-menu type="overlay">
+      <ion-header>
+        <ion-toolbar color="tertiary">
+          <ion-title>Settings</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="bluetooth">
+        <ion-icon name="bluetooth"></ion-icon>
+        <ion-label>Connect</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="thermostat">
+        <ion-icon name="phone-landscape"></ion-icon>
+        <ion-label>Thermostat</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="test">
+        <ion-icon name="options"></ion-icon>
+        <ion-label>Test</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="device-details/:id">
+        <ion-icon name="analytics"></ion-icon>
+        <ion-label>Live Data</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="temperature-analysis">
+          <ion-icon name="thermometer"></ion-icon>
+          <ion-label>Temperature</ion-label>
+        </ion-tab-button>
+      <ion-tab-button tab="humidity-analysis">
+        <ion-icon name="water"></ion-icon>
+        <ion-label>Humidity</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="power-analysis">
+        <ion-icon name="flash"></ion-icon>
+        <ion-label>Power</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="vibration-analysis">
+        <ion-icon name="pulse"></ion-icon>
+        <ion-label>Vibration</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-app>

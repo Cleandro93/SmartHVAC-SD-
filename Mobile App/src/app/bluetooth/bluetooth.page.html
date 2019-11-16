@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="tertiary"></ion-menu-button>
+    </ion-buttons>
+    <!-- <div class="light" slot="end"></div> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row center>
+      <ion-col text-center>
+        <br><br><br>
+        <img style="border:3px solid midnightblue ;" src="../assets/rv1.png" align="center" width="250" height="100"/>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+
+  <ion-grid>
+    <ion-row center>
+      <ion-col text-center>
+        <ion-button shape="round" size="large" expland="block" (click)="scan()">Search</ion-button><br><br>
+        <ion-button color="tertiary" shape="round" size="large" expland="block" (click)="presentAlertConfirm()">Status</ion-button>
+        <br><br><br>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+      <ion-row center>
+        <ion-col text-center>
+          <div class=bleDevices>
+            <ion-list>
+              <button ion-item *ngFor="let device of devices" (click)="deviceSelected(device.id, device)" >
+              <h2 > {{device.name || 'Unnamed' }} </h2>
+              <p>{{device.id}}</p>
+              </button>
+            </ion-list>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+</ion-content>
+
+<!--
+<ion-footer>
+  <ion-toolbar>
+    <p>{{ statusMessage }}</p>
+  </ion-toolbar>
+</ion-footer>
+-->

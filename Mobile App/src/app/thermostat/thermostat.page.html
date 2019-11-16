@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="tertiary"></ion-menu-button>
+    </ion-buttons>
+    <!-- <div class="light" slot="end"></div> -->
+  </ion-toolbar>
+  <!--
+  <ion-segment (ionChange)="segmentChanged($event)" value="thermostat">
+    <ion-segment-button value="connection">
+      <ion-label>Connection</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="liveData">
+      <ion-label>Live Data</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="thermostat">
+      <ion-label>Thermostat</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="test">
+      <ion-label>Test</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  -->
+</ion-header>
+  
+<ion-content>
+  <br>
+  <ion-grid>
+    <ion-row center>
+      <ion-col text-center>
+        <!--
+        <ion-segment (ionChange)="segmentChanged($event)" value="fahrenheit">
+          <ion-segment-button value="fahrenheit">
+            <ion-label>Fahrenheit</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="celcius">
+            <ion-label>Celcius</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+        -->
+
+        <h4>Current Temperature</h4><br>
+        <div class="sensorsDisplay"><p>{{ getAmbTempStatus() }}</div><br>
+        <br>
+        <h4>Set Temperature To</h4><br>
+        <div class="thermostatButtonsUp">
+          <ion-button shape="round" size="large" expland="block" (click)="setTempDown()">
+            <ion-icon name="arrow-dropdown"></ion-icon>
+          </ion-button>
+        </div>
+        <div class="sensorsDisplayThermo"><p>{{ getSetTemp() }}</div>
+        <div class="thermostatButtonsDown">
+          <ion-button shape="round" size="large" expland="block" class="shadow-red" (click)="setTempUp()">
+            <ion-icon name="arrow-dropup"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row center>
+      <ion-col text-center>
+        <h4>Fan</h4><br>
+        <!--
+        <div class="fanHighLabel">
+            <p><b>High</b></p>
+        </div>
+        <ion-toggle class="fanToggle" color="primary"></ion-toggle>
+        <div class="fanLowLabel">
+            <p><b>Low</b></p>
+        </div>
+        <br><br><br>
+        <ion-button color="tertiary" shape="round" size="large" expland="block" (click)="powerOff()">
+          <ion-icon name="power"></ion-icon>
+        </ion-button>
+        -->
+        <div class="fanLowLabel">
+          <ion-list>
+            <ion-radio-group (ionChange)="fanSelectionChanged($event)" allow-empty-selection = “true” color="primary">
+              <ion-item>
+                <ion-label><b>Cool On</b></ion-label>
+                <ion-radio slot="start" value="coolOn" checked></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label><b>Cool Off</b></ion-label>
+                <ion-radio slot="start" value="coolOff" checked></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+
+            <br>
+
+            <ion-radio-group (ionChange)="fanSelectionChanged($event)" allow-empty-selection = “true” color="primary">
+              <ion-item>
+                <ion-label><b>Fan High</b></ion-label>
+                <ion-radio slot="start" value="fanHigh"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label><b>Fan Low</b></ion-label>
+                <ion-radio slot="start" value="fanLow"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+
+            <br>
+
+            <ion-radio-group (ionChange)="fanSelectionChanged($event)" allow-empty-selection = “true” color="primary">
+              <ion-item>
+                <ion-label><b>Power On</b></ion-label>
+                <ion-radio slot="start" value="powerOn"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label><b>Power Off</b></ion-label>
+                <ion-radio slot="start" value="powerOff"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,143 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="tertiary"></ion-menu-button>
+    </ion-buttons>
+    <!-- <div class="light" slot="end"></div> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row center>
+      <ion-col text-center>
+        <h4>Temperature & Humidity</h4>
+        <div class="readerLeft" >
+          <p><b>Cabin<br>Temperature</b>
+          </p>
+        </div>
+        <div class="readerRight" >
+          <p><b>Cabin<br>Humidity</b>
+          </p>
+        </div>
+        <div class="sensorsDisplay"><p>{{ getCabinTempStatus() }}</div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="sensorsDisplay"><p>{{ getCabinHumStatus() }}</div>
+        <!-- More Data-->
+        <br>
+        <div class="readerLeft" >
+          <p><b>Compressor<br>Temperature</b>
+          </p>
+        </div>
+        <div class="readerRightTemp" >
+          <p><b>Expasion<br>Temperature</b>
+          </p>
+        </div>
+        <div class="sensorsDisplay"><p>{{ getCompressorTempStatus() }}</div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="sensorsDisplay"><p>{{ getExpansionTempStatus() }}</div>
+        <!-- More Data-->
+        <div class="readerMiddle" >
+          <p><b>Evaporator<br>Temperature</b>
+          </p>
+        </div>
+        <div class="sensorsDisplay"><p>{{ getEvaporatorTempStatus() }}</div>
+
+        <h4>Power</h4>
+        <div class="readerTripleLeft" >
+          <p><b>Compressor<br>Voltage</b>
+          </p>
+        </div>
+        <div class="readerTripleRight" >
+          <p><b>Fan High<br>Voltage</b>
+          </p>
+        </div>
+        <div class="readerTripleMiddle" >
+          <p><b>Fan Low<br>Voltage</b>
+          </p>
+        </div>
+        <div class="sensorsDisplay"><p>{{ getCompressorVoltageStatus() }}</div>
+        <div class="sensorsDisplay"><p>{{ getFanLowVoltageStatus() }}</div>
+        <div class="sensorsDisplay"><p>{{ getFanHighVoltageStatus() }}</div>
+        <!-- More Data-->
+        <div class="readerTripleLeft" >
+          <p><b>Compressor<br>Current</b>
+          </p>
+        </div>
+        <div class="readerTripleRight" >
+          <p><b>Fan High<br>Current</b>
+          </p>
+        </div>
+        <div class="readerTripleMiddle" >
+          <p><b>Fan Low<br>Current</b>
+          </p>
+        </div>
+        <div class="sensorsDisplay"><p>{{ getCompressorCurrStatus() }}</div>
+        <div class="sensorsDisplay"><p>{{ getFanLowCurrStatus() }}</div>
+        <div class="sensorsDisplay"><p>{{ getFanHighCurrStatus() }}</div>
+        <!-- More Data-->
+        <div class="readerTripleLeftFreq" >
+          <p><b>Compressor<br>Frequency</b>
+          </p>
+        </div>
+        <div class="readerTripleRightFreq" >
+          <p><b>Fan High<br>Frequency</b>
+          </p>
+        </div>
+        <div class="readerTripleMiddleFreq" >
+          <p><b>Fan Low<br>Frequency</b>
+          </p>
+        </div>
+        <div class="sensorsDisplay"><p>{{ getCompressorFreqStatus() }}</div>
+        <div class="sensorsDisplay"><p>{{ getFanLowFreqStatus() }}</div>
+        <div class="sensorsDisplay"><p>{{ getFanHighFreqStatus() }}</div>
+        
+        <h4>Vibration</h4>
+        <div class="readerTripleLeftVib" >
+          <p><b>X-axis</b>
+          </p>
+        </div>
+        <div class="readerTripleRightVib" >
+          <p><b>Y-axis</b>
+          </p>
+        </div>
+        <div class="readerTripleMiddleVib" >
+          <p><b>Z-axis</b>
+          </p>
+        </div>
+        <div class="sensorsDisplay"><p>{{ getXAxisStatus() }}</div>
+        <div class="sensorsDisplay"><p>{{ getYAxisStatus() }}</div>
+        <div class="sensorsDisplay"><p>{{ getZAxisStatus() }}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--
+  <ion-card>
+    <ion-card-header>
+      {{ device.name || "Unnamed"}}
+    </ion-card-header>
+    <ion-card-content>
+      ID: {{ device.id }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Notification data
+    </ion-card-header>
+    <ion-list>
+      <ion-item *ngFor="let data of sensorData">
+        <p>{{data}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-footer>
+  <ion-toolbar>
+    <p>{{ statusMessage }}</p>
+  </ion-toolbar>
+</ion-footer>
+-->
+
+</ion-content>
