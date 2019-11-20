@@ -9,11 +9,11 @@ export class BleService {
 
   constructor() { }
 
-  setDevice(device){
+  setDevice(device) {
     this.device = device;
   }
 
-  getDevice(){
+  getDevice() {
     return this.device;
   }
 }

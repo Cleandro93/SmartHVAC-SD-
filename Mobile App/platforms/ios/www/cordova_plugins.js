@@ -63,6 +63,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "SQLitePlugin"
       ]
+    },
+    {
+      "id": "cordova-plugin-dbcopy.sqlDB",
+      "file": "plugins/cordova-plugin-dbcopy/www/sqlDB.js",
+      "pluginId": "cordova-plugin-dbcopy",
+      "clobbers": [
+        "window.plugins.sqlDB"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -74,6 +82,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "2.4.2",
     "cordova-plugin-whitelist": "1.3.4",
-    "cordova-sqlite-storage": "3.4.0"
+    "cordova-sqlite-storage": "3.4.0",
+    "cordova-plugin-dbcopy": "2.1.2"
   };
 });

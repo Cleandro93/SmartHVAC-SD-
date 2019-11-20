@@ -24,7 +24,8 @@ export class BluetoothPage implements OnInit {
               private bleService: BleService,
               public alertController: AlertController,
               public events: Events,
-              public storage: Storage) { }
+              public storage: Storage) {
+  }
 
   ngOnInit() {
     console.log('ionViewDidEnter');
@@ -39,16 +40,16 @@ export class BluetoothPage implements OnInit {
       error => this.scanError(error)
     );
 
-    //setTimeout(this.setStatus.bind(this), 10000, 'Scan complete');
+    // setTimeout(this.setStatus.bind(this), 10000, 'Scan complete');
   }
 
   onDeviceDiscovered(device) {
     console.log('Discovered ' + JSON.stringify(device, null, 2));
     this.ngZone.run(() => {
       this.devices.push(device);
-       const mfgData = new Uint8Array(device.advertising.kCBAdvDataManufacturerData);
-       this.adv = new Uint8Array(device.advertising.kCBAdvDataManufacturerData);
-       console.log(' Name is '+device.name+' Manufacturer Data is', mfgData);
+      const mfgData = new Uint8Array(device.advertising.kCBAdvDataManufacturerData);
+      this.adv = new Uint8Array(device.advertising.kCBAdvDataManufacturerData);
+      console.log(' Name is ' + device.name + ' Manufacturer Data is', mfgData);
     });
   }
 

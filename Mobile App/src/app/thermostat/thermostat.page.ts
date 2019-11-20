@@ -14,19 +14,19 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./thermostat.page.scss'],
 })
 export class ThermostatPage implements OnInit {
-  on = 0;
-  off = 1;
+  on = 1;
+  off = 0;
   category: string;
   ambTemp: number;
-  setToTemp = 70;
+  setToTemp;
   weeklyTemp: number;
   tempUnit: string;
   devices: any;
   device: any;
   statusMessage: string;
   sensorData: Uint8Array;
-  data: number[] = [3, 3, 3, 3, 3];
-  prevData: number[];
+  data: number[] = [0, 0, 0, 0, 0, 1, 0];
+  prevData: number[] = [0, 0, 0, 0, 0, 0, 0];
   zAxis: number;
   fanSelection: string;
 
@@ -45,7 +45,7 @@ export class ThermostatPage implements OnInit {
     // Or to get a key/value pair
     this.storage.get('bleDevice').then((val) => {
       console.log('Your age is', val);
-      let receivedObject = JSON.parse(val);
+      const receivedObject = JSON.parse(val);
       this.device = receivedObject;
       console.log('Received this Object: ' + this.device);
       console.log('Type of OBJ is ' + typeof(this.device));
@@ -54,6 +54,18 @@ export class ThermostatPage implements OnInit {
       console.log('Ambtemp is: ' + this.ambTemp);
       this.setToTemp = this.ambTemp;
     });
+
+    this.storage.get('ambTemp').then((val) => {
+      this.ambTemp = val;
+      this.setToTemp = val;
+      this.data[4] = val;
+      console.log('Value is: ' + val);
+    });
+
+    this.data[6] = 0;
+
+    console.log('Initial Data is: ' + this.data);
+    this.wait(200);
   }
 
   ionViewWillLeave() {
@@ -63,11 +75,12 @@ export class ThermostatPage implements OnInit {
     // Update the UI with the current state of the switch characteristic
     this.ble.read(device.id, 'D0AF', '7B53').then(
       buffer => {
-        let data = new Uint8Array(buffer);
-        
+        const data = new Uint8Array(buffer) as Uint8Array;
+        const lastToCopy = data.length - 1;
         this.ngZone.run(() => {
             this.ambTemp = data[4];
             console.log('switch characteristic ' + data[4]);
+            console.log('Got ' + data);
             console.log('Set AmbTemp to: ' + this.ambTemp);
         });
       }
@@ -76,7 +89,7 @@ export class ThermostatPage implements OnInit {
 
   onWrite() {
     console.log('onRead');
-    let buffer = new Uint8Array(this.data).buffer as ArrayBuffer;
+    const buffer = new Uint8Array(this.data).buffer as ArrayBuffer;
     console.log('Data is: ' + this.data[0]);
     console.log('Type is: ' + typeof(buffer));
     console.log('The whole array is: ' + this.data);
@@ -87,8 +100,6 @@ export class ThermostatPage implements OnInit {
   }
 
   getAmbTempStatus() {
-    // this.ambTemp = 72;
-    // this.onRead(this.device);
     return this.ambTemp;
   }
 
@@ -96,7 +107,7 @@ export class ThermostatPage implements OnInit {
     if (this.category === 'celcius') {
       return (this.setToTemp - 32) * (5 / 9);
     } else {
-      return this.setToTemp;
+      return this.setToTemp - 64;
     }
   }
 
@@ -122,19 +133,21 @@ export class ThermostatPage implements OnInit {
     this.setToTemp += 1;
     this.data[3] = this.setToTemp;
     this.onWrite();
+    this.onRead(this.device);
   }
 
   setTempDown() {
     this.setToTemp -= 1;
     this.data[3] = this.setToTemp;
     this.onWrite();
+    this.onRead(this.device);
   }
 
   powerOff() {
   }
 
   wait(ms) {
-    let start = new Date().getTime();
+    const start = new Date().getTime();
     let end = start;
     while (end < start + ms) {
       end = new Date().getTime();
@@ -143,54 +156,38 @@ export class ThermostatPage implements OnInit {
 
  fanSelectionChanged(event) {
    this.fanSelection = event.detail.value;
+   const last = this.data.length - 1;
    console.log('Event is: ' + event + '\n');
    console.log('Value is: ' + this.fanSelection);
-   let lastToCopy = this.data.length - 1;
 
    switch (this.fanSelection) {
     case 'coolOn':
         this.data[0] = this.on;
-        this.prevData = this.data.slice(0, lastToCopy);
         console.log('Cool On data is: ' + this.data[0]);
-        console.log('Cool On prevdata is: ' + this.prevData[0]);
-        console.log('Previous is: ' + this.prevData);
         break;
     case 'coolOff':
         this.data[0] = this.off;
-        this.prevData = this.data.slice(0, lastToCopy);
-        console.log('Previous is: ' + this.prevData);
-        // console.log('Cool Off data is: ' + this.data[0]);
         break;
     case 'fanHigh':
-        // console.log('Fan High data is: ' + this.data[0]);
         this.data[1] = this.off;
         this.data[2] = this.on;
-        this.prevData = this.data.slice(0, lastToCopy);
-        console.log('Previous is: ' + this.prevData);
         break;
     case 'fanLow':
-        // console.log('Fan Low data is: ' + this.data[0]);
         this.data[2] = this.off;
         this.data[1] = this.on;
-        this.prevData = this.data.slice(0, lastToCopy);
-        console.log('Previous is: ' + this.prevData);
         break;
     case 'powerOn':
-        // console.log('Power On data is: ' + this.data[0]);
-        this.data = this.prevData.slice(0, lastToCopy);
-        console.log('Previous is: ' + this.prevData);
+        this.data[5] = this.on;
         break;
     case 'powerOff':
-        console.log('Power Off data is: ' + this.data[0]);
-        this.data[0] = this.off;
-        this.data[1] = this.off;
-        this.data[2] = this.off;
-        console.log('Previous is: ' + this.prevData);
+        // this.prevData = this.data.slice(0, last);
+        this.data[5] = this.off;
         break;
     default:
       console.log('Error with the radio buttons\n');
    }
 
    this.onWrite();
+   this.onRead(this.device);
   }
 }

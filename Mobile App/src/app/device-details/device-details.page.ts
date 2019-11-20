@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { ToastController, AlertController, NavController } from '@ionic/angular';
 import { BLE } from '@ionic-native/ble/ngx';
 import { Storage } from '@ionic/storage';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 
 @Component({
   selector: 'app-device-details',
@@ -48,6 +49,7 @@ export class DeviceDetailsPage implements OnInit {
               private ngZone: NgZone,
               public alertController: AlertController,
               private storage: Storage
+              // private sqlite: SQLite
               ) {
 
     const passDevice = this.route.snapshot.data.special;
@@ -102,6 +104,7 @@ export class DeviceDetailsPage implements OnInit {
       this.yAxis = this.sensorData[15];
       this.zAxis = this.sensorData[16];
 
+      this.storage.set('ambTemp', this.ambientTemp);
       console.log('Reading: ' + this.sensorData);
     });
   }
@@ -139,7 +142,7 @@ export class DeviceDetailsPage implements OnInit {
 
   // Presenting the sensing data to the user;
   getCabinTempStatus() {
-    return this.ambientTemp;
+    return this.ambientTemp - 64;
 
     /*
     if (this.category === 'celcius') {
@@ -157,17 +160,17 @@ export class DeviceDetailsPage implements OnInit {
 
   getCompressorTempStatus() {
 
-    return this.compressorTemp;
+    return this.compressorTemp - 64;
   }
 
   getExpansionTempStatus() {
 
-    return this.expansionTemp;
+    return this.expansionTemp - 64;
   }
 
   getEvaporatorTempStatus() {
 
-    return this.evaporatorTemp;
+    return this.evaporatorTemp - 64;
   }
 
   getCompressorVoltageStatus() {
